@@ -70,16 +70,17 @@ public final class Tables {
         int min_pos = 0;
         int max_value = table[0];
         int min_value = table[0];
+        int current_value;
 
         for (int current_pos = 1; current_pos < table.length; current_pos++) {
-            int current_value = table[current_pos];
+            current_value = table[current_pos];
 
             if (current_value > max_value) {
                 max_pos = current_pos;
-                max_value = table[max_pos];
+                max_value = current_value;
             } else if (current_value < min_value) {
                 min_pos = current_pos;
-                min_value = table[min_pos];
+                min_value = current_value;
             }
         }
 
@@ -93,7 +94,7 @@ public final class Tables {
     }
 
     public static long factorial(int number) {
-        int result = number;
+        long result = number;
         for (int index = 1; index < number-1; index++) {
             result = result * (number - index);
         }

@@ -7,13 +7,13 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("... Initiating AlgDat ...\n");
 
-
-        tables_factorial();
-        tables_minmax();
-        tables_minmax_lazy();
-        tables_max();
-        tables_first_max_sentinel();
-        tables_last_max_sentinel();
+        System.out.println(Tables.factorial(0));
+        //tables_factorial();
+        //tables_minmax();
+        //tables_minmax_lazy();
+        //tables_max();
+        //tables_first_max_sentinel();
+        //tables_last_max_sentinel();
     }
 
     public static void tables_factorial() {
