@@ -29,10 +29,10 @@ public class Oblig1Test
         antallFeil += oppgave4();
         antallFeil += oppgave5();
         antallFeil += oppgave6();
-        //antallFeil += oppgave7();
-        //antallFeil += oppgave8();
-        //antallFeil += oppgave9();
-        //antallFeil += oppgave10();
+        antallFeil += oppgave7();
+        antallFeil += oppgave8();
+        antallFeil += oppgave9();
+        antallFeil += oppgave10();
 
         if (antallFeil == 0)
         {
@@ -366,6 +366,7 @@ public class Oblig1Test
         if (antallFeil == 0)
         {
             a = randPerm(100000);
+
             long tid = System.currentTimeMillis();
             Oblig1.delsortering(a);
             tid = System.currentTimeMillis() - tid;
@@ -399,6 +400,8 @@ public class Oblig1Test
                 System.out.println
                         ("              Hint: Bruk en partisjoneringsteknikk!");
                 antallFeil++;
+            } else {
+                System.out.println("Oppgave 4 tok "+tid+"ms");
             }
         }
 
@@ -584,7 +587,7 @@ public class Oblig1Test
     }
 
     ///// Oppgave 7 //////////////////////////////////////
-/*
+
     public static int oppgave7()
     {
         int antallFeil = 0;
@@ -1100,7 +1103,7 @@ public class Oblig1Test
     }
 
     ///// Hjelpemetoder /////////////////////////////
-*/
+
     public static void bytt(int[] a, int i, int j)
     {
         int temp = a[i]; a[i] = a[j]; a[j] = temp;

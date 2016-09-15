@@ -2,6 +2,7 @@ package programs;
 
 import static obligs.Oblig1.*;
 import modules.Tabell;
+import modules.Table;
 
 import java.util.Arrays;
 
@@ -10,7 +11,11 @@ import java.util.Arrays;
  */
 public class Oblig1Main {
     public static void main(String[] args) {
-        oppgave4();
+        String str = "str";
+        int a = str.charAt(1) - '0';
+        int b = str.charAt(1);
+        System.out.println(a);
+        System.out.println(b);
     }
     
     public static void oppgave1(){
@@ -64,5 +69,33 @@ public class Oblig1Main {
         char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         rotasjon(a);
         System.out.println(Arrays.toString(a));
+    }
+
+    public static void oppgave7a() {
+        String a = flett("ABC","DEFGH");
+        String b = flett("IJKLMN","OPQ");
+        String c = flett("","AB");
+        System.out.println(a + " " + b + " " + c);
+    }
+
+    public static void oppgave7b() {
+        String a = flett("AM ","L","GEDS","ORATKRR","","R TRTE","IO","TGAUU");
+        System.out.println(a);
+    }
+
+    public static void oppgave8() {
+        long tid = System.currentTimeMillis();
+        int[] a = {6,10,16,11,7,12,3,9,8,5};
+        int[] index = indekssortering(a);
+
+        System.out.println(System.currentTimeMillis()-tid);
+        System.out.println(Arrays.toString(index));
+    }
+
+    public static void oppgave9() {
+        int[] a = {7, 10, 4, 3, 5, 1, 6, 8, 2, 9};
+        int[] b = {1,2,3,4,5,6};
+
+        System.out.println(Arrays.toString(tredjeMin(b)));
     }
 }

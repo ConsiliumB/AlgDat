@@ -1,6 +1,7 @@
 package modules;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
@@ -335,5 +336,26 @@ public class Table {
         }
 
         return a;                        // permutasjonen returneres
+    }
+
+    public static void comparatorExample() {
+        long tid = System.currentTimeMillis();
+        Comparator<Integer> c = (x, y) ->
+        {
+            if ((x - y) % 2 == 0) {
+                return x - y;
+            } else if (x % 2 == 0) {
+                return -1;
+            } else {
+                return 1;
+            }
+        };
+
+        Integer[] a = {-1, 0, 1, 2, 3, 4, 5};
+
+        Arrays.sort(a, c);
+        System.out.println(System.currentTimeMillis()-tid);
+
+        System.out.println(Arrays.toString(a));
     }
 }

@@ -1,7 +1,7 @@
 package programs;
 
-import static modules.Table.*;
-import modules.Tabell;
+import modules.Table;
+import static modules.Tabell.*;
 
 import java.util.Arrays;
 
@@ -9,13 +9,35 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("... Initiating AlgDat ...\n");
 
+        System.out.println(Math.floorMod(-499, 50));
 
+        //System.out.println(((-499 % 50) + 50) % 50);
+        int a = 'Æ';
+        int b = 'Ø';
+        int c = 'Å';
+        System.out.println(a+" "+b+" "+c);
+    }
+
+    public static void task_1235() {
+        int[] a = {1, 2, 3, 4, 5};
+        snu(a, 0, 3);
+        System.out.println(Arrays.toString(a));
+    }
+    
+    public static void task_1227() {
+        System.out.println(Arrays.toString(heleTall(2,2)));
+    }
+
+    public static void task_1224() {
+        int[] a = Table.randPerm(10);
+        System.out.println(Arrays.toString(a));
+        skriv(a, 1, 10);
     }
 
     public static void task_1189() {
         int n = 34000;
         long tid = System.currentTimeMillis();
-        int[] a = randPerm(n);
+        int[] a = Table.randPerm(n);
         tid = System.currentTimeMillis() - tid;
         System.out.println(tid);
     }
@@ -23,7 +45,7 @@ public class Main {
     public static void task_1185() {
         int n = 34000;
         long tid = System.currentTimeMillis();
-        int[] a = randPerm_faster(n);
+        int[] a = Table.randPerm_faster(n);
         tid = System.currentTimeMillis() - tid;
         System.out.println(tid);
     }
@@ -31,19 +53,19 @@ public class Main {
     public static void task_1182() {
         int n = 34000;
         long tid = System.currentTimeMillis();
-        int[] a = randPerm_slow(n);
+        int[] a = Table.randPerm_slow(n);
         tid = System.currentTimeMillis() - tid;
         System.out.println(tid);
     }
 
     public static void task_1184() {
         for (int i = 0; i < 50; i++) {
-            System.out.println(Arrays.toString(randPerm_faster(10)));
+            System.out.println(Arrays.toString(Table.randPerm_faster(10)));
         }
     }
 
     public static void task_1181() {
-        System.out.println(Arrays.toString(randPerm(10)));
+        System.out.println(Arrays.toString(Table.randPerm(10)));
     }
 
     public static void task_1165() {
@@ -57,10 +79,10 @@ public class Main {
         // main-metoden i class Program skal nå inneholde:
         int n = 100_000, antall = 2_000; // tabellstørrelse og gjentagelser
         long tid = 0;                    // for tidsmåling
-        int a[] = randPerm(n);           // en permutasjon av 1, . .  n
+        int a[] = Table.randPerm(n);           // en permutasjon av 1, . .  n
 
         tid = System.currentTimeMillis();    // leser av klokken
-        for (int i = 0; i < antall; i++) kostnader(a);
+        for (int i = 0; i < antall; i++) Table.kostnader(a);
         tid = System.currentTimeMillis() - tid;    // medgått tid
         System.out.println("Faste kostnader: " + tid + " millisek");
 
@@ -103,14 +125,14 @@ public class Main {
 
     public static void table_two_largest() {
         int[] a = {11, 9, 3, 10, 8, 7, 2};
-        System.out.println(Arrays.toString(two_largest(a, 0, a.length)));
+        System.out.println(Arrays.toString(Table.two_largest(a, 0, a.length)));
     }
 
 
     public static void task_1164() {
         for (int i = 0; i < 10000; i++) {
-            if (euler(i) < 0.578) {
-                System.out.println(i + " " + euler(i));
+            if (Table.euler(i) < 0.578) {
+                System.out.println(i + " " + Table.euler(i));
                 break;
             }
         }
@@ -118,7 +140,7 @@ public class Main {
 
     public static void tables_factorial() {
         long tid = System.nanoTime();
-        long result = factorial(5);
+        long result = Table.factorial(5);
         tid = System.nanoTime() - tid;
         System.out.println("Factorial calculation took " + tid + "ns.");
         System.out.println("Found that 5! = " + result + ".\n");
@@ -127,7 +149,7 @@ public class Main {
     public static void tables_minmax() {
         int[] table = {4, 6, 8, 2, 3, 1, 5, 9};
         long tid = System.nanoTime();
-        int[] result = minmax(table);
+        int[] result = Table.minmax(table);
         tid = System.nanoTime() - tid;
         System.out.println("Optimized Min & Max position calculation took " + tid + "ns.");
         System.out.println("Given " + Arrays.toString(table) + " found " + Arrays.toString(result) + ".\n");
@@ -136,7 +158,7 @@ public class Main {
     public static void tables_minmax_lazy() {
         int[] table = {4, 6, 8, 2, 3, 1, 5, 9};
         long tid = System.nanoTime();
-        int[] result = minmax_lazy(table);
+        int[] result = Table.minmax_lazy(table);
         tid = System.nanoTime() - tid;
         System.out.println("Lazy Min & Max position calculation took " + tid + "ns.");
         System.out.println("Given " + Arrays.toString(table) + " found " + Arrays.toString(result) + ".\n");
@@ -145,7 +167,7 @@ public class Main {
     public static void tables_max() {
         int[] table = {4, 6, 9, 2, 3, 1, 5, 9};
         long tid = System.nanoTime();
-        int result = max(table);
+        int result = Table.max(table);
         tid = System.nanoTime() - tid;
         System.out.println("Max calculation took " + tid + "ns.");
         System.out.println("Given " + Arrays.toString(table) + " found " + result + ".\n");
@@ -154,7 +176,7 @@ public class Main {
     public static void tables_first_max_sentinel() {
         int[] table = {4, 6, 9, 2, 3, 1, 5, 9};
         long tid = System.nanoTime();
-        int result = first_max_sentinel(table);
+        int result = Table.first_max_sentinel(table);
         tid = System.nanoTime() - tid;
         System.out.println("Max calculation returning first value using Sentinel took " + tid + "ns.");
         System.out.println("Given " + Arrays.toString(table) + " found " + result + ".\n");
@@ -163,7 +185,7 @@ public class Main {
     public static void tables_last_max_sentinel() {
         int[] table = {4, 6, 9, 2, 3, 1, 5, 9};
         long tid = System.nanoTime();
-        int result = last_max_sentinel(table);
+        int result = Table.last_max_sentinel(table);
         tid = System.nanoTime() - tid;
         System.out.println("Max calculation returning last value using Sentinel took " + tid + "ns.");
         System.out.println("Given " + Arrays.toString(table) + " found " + result + ".\n");
