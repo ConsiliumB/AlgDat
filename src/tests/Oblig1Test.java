@@ -11,9 +11,9 @@ kommentartegnet foran metodekallet tas vekk. Testprogrammet må gi 0 feil før
 Oblig 1 sendes inn! 
 */
 
-///// Oppdatert 26. august 2016 ///////////////
+///// Oppdatert 9. september 2016 ///////////////
 
-import obligs.Oblig1;
+package obligs;
 
 import java.util.*;
 
@@ -34,6 +34,13 @@ public class Oblig1Test
         antallFeil += oppgave9();
         antallFeil += oppgave10();
 
+        long tid;
+        int repeats = 0;
+        for (int i = 0; i < repeats; i++) {
+            tid = System.currentTimeMillis();
+            antallFeil += oppgave8();
+            System.out.println(System.currentTimeMillis() - tid);
+        }
         if (antallFeil == 0)
         {
             System.out.println("Gratulerer!! Du passerte testen!");
@@ -94,8 +101,8 @@ public class Oblig1Test
             antallFeil++;
         }
 
-        a = new int[] {6, 5, 4, 3, 2, 1};
-        b = new int[] {1, 2, 3, 4, 5};
+        a = new int[] {6,5,4,3,2,1};
+        b = new int[] {1,2,3,4,5};
         c = new int[] {4, 9, 3, 6, 1, 5, 7, 8, 10, 2};
         d = new int[] {2, 5, 8, 4, 3, 10, 1, 7, 6, 9};
 
@@ -366,7 +373,6 @@ public class Oblig1Test
         if (antallFeil == 0)
         {
             a = randPerm(100000);
-
             long tid = System.currentTimeMillis();
             Oblig1.delsortering(a);
             tid = System.currentTimeMillis() - tid;
@@ -400,8 +406,6 @@ public class Oblig1Test
                 System.out.println
                         ("              Hint: Bruk en partisjoneringsteknikk!");
                 antallFeil++;
-            } else {
-                System.out.println("Oppgave 4 tok "+tid+"ms");
             }
         }
 
@@ -942,6 +946,19 @@ public class Oblig1Test
             }
 
             flere2 = nestePermutasjon(a);
+        }
+
+        a = randPerm(100_000);
+        long tid = System.currentTimeMillis();
+        Oblig1.tredjeMin(a);
+        tid = System.currentTimeMillis() - tid;
+
+
+        if (tid > 100)
+        {
+            System.out.println("Oppgave 9: g) Metoden er ineffektiv! Bruker du");
+            System.out.println("metoden indekssortering på hele tabellen?");
+            antallFeil++;
         }
 
         return antallFeil;
