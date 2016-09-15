@@ -214,20 +214,12 @@ public class Oblig1 {
 
     public static int[] indekssortering(int[] a) {
         int[] b = Arrays.copyOf(a, a.length);
-        int[] c = new int[a.length];
-        Arrays.setAll(c, i -> i);
-
-
+        int[] index = new int[a.length];
 
         for (int i = 0; i < b.length; i++) {
-            int x = min(b, i, b.length);
-            bytt(b, x, i);
-            bytt(c, x, i);
-        }
-
-        int[] index = new int[a.length];
-        for (int i = 0; i < index.length; i++) {
-            index[i] = c[i];
+            int x = min(b);
+            index[i] = x;
+            b[x] = Integer.MAX_VALUE;
         }
 
         return index;
