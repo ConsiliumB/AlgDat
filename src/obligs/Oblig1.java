@@ -4,27 +4,35 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 /**
- * Created by Consilium on 29.08.2016.
+ * John André Seem - s305366 - Informasjonsteknologi
+ * Sondre Haldar-Iversen - s305344 - Informasjonsteknologi
+ * Even Tsai Hansen - s167844 - Dataingeniør
+ * Lise Estelle Prat - s305345 - Informasjonsteknologi
+ * Benjamin Bryne - s305338 - Informasjonsteknologi
  */
 public class Oblig1 {
 
     private Oblig1() {
     }
 
+    //Oppgave 1
+    //I en tabell med n verdier vil det blir gjort n-1 sammenligninger
     public static int maks(int[] a) {
         if (a.length < 1) throw new NoSuchElementException("Ugyldig input: Tom tabell");
 
         for (int i = 0; i < a.length - 1; i++) {
             if (a[i] > a[i + 1]) {
-                int temp = a[i + 1];
-                a[i + 1] = a[i];
-                a[i] = temp;
+                bytt(a, i, i + 1);
             }
         }
 
         return a[a.length - 1];
     }
 
+    //Det vil bli gjort flest ombyttinger i tabellen når det høyeste tallet ligger først i tabellen.
+    //Det vil bli gjort færrest ombyttinger i tabellen når den er sortert stigende.
+    //I gjennomsnitt vil dette bli gjort Summen av (n-1)/n. Kan også regnes med summen av 1-(1/n)
+    //Vi kan på grunnlag av dette se at denne metoden er vesentlig dårligere enn de tidligere maks metodene
     public static int ombyttinger(int[] a) {
         if (a.length < 1) throw new NoSuchElementException("Ugyldig input: Tom tabell");
 
@@ -32,9 +40,7 @@ public class Oblig1 {
 
         for (int i = 0; i < a.length - 1; i++) {
             if (a[i] > a[i + 1]) {
-                int temp = a[i + 1];
-                a[i + 1] = a[i];
-                a[i] = temp;
+                bytt(a, i, i + 1);
                 ombyttinger++;
             }
         }
@@ -42,6 +48,7 @@ public class Oblig1 {
         return ombyttinger;
     }
 
+    //Oppgave 2
     public static int antallUlikeSortert(int[] a) {
         if (a.length == 0) {
             return 0;
@@ -62,87 +69,29 @@ public class Oblig1 {
         return antallUlike;
     }
 
-/*    public static int antallUlikeUsortert(int[] a) {
-        return (int)Arrays.stream(a).distinct().count();
-    }*/
-
-    public static int antallUlikeUsortert(int[] a) {
-        int antallUlike = 0;
-        boolean ok = true;
-        for (int i = 0; i < a.length; i++) {
-            int b = a[i];
-            for (int j = i + 1; j < a.length; j++) {
-                if (b == a[j]) {
-                    ok = false;
-                    break;
-                }
-            }
-            if (ok) {
-                antallUlike++;
-            }
-            ok = true;
+    //oppgave 3
+    public static int antallUlikeUsortert(int[] a){
+        if (a.length == 0) {
+            return 0;
         }
 
+        int antallUlike = 1;
+
+        for (int i = 1; i < a.length; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (a[i] == a[j]) {
+                    break;
+                }
+                if (j == 0) {
+                    antallUlike++;
+                }
+            }
+        }
         return antallUlike;
     }
 
-    public static int binarySearch(int[] a, int value, int fromIndex, int toIndex) {
-        int middle = (fromIndex + toIndex) / 2;
-
-        int nextMiddle;
-        while (true) {
-            if (a[middle] > value) {
-                toIndex = middle;
-                nextMiddle = (fromIndex + middle) / 2;
-            } else {
-                fromIndex = middle;
-                nextMiddle = (middle + toIndex) / 2;
-            }
-
-            if ((middle + 1 == nextMiddle) || (middle - 1 == nextMiddle) || middle == nextMiddle) {
-                return nextMiddle;
-            } else {
-                middle = nextMiddle;
-            }
-        }
-    }
-
+    //Oppgave 4
     public static void delsortering(int[] a) {
-        int temp;
-        int offset = 0;
-
-        for (int i = 0; i < a.length - offset; i++) {
-            if (a[i] % 2 == 0) {
-                for (int j = a.length - 1 - offset; j > i; j--) {
-                    if (Math.abs(a[j] % 2) == 1) {
-                        temp = a[j];
-                        a[j] = a[i];
-                        a[i] = temp;
-                        offset = a.length - j;
-                        break;
-                    }
-                }
-            }
-        }
-
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] % 2 == 0) {
-                offset = i;
-                break;
-            }
-        }
-
-        Arrays.sort(a, 0, offset);
-        Arrays.sort(a, offset, a.length);
-    }
-
-    public static void bytt(int[] a, int i, int j) {
-        int temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
-    }
-
-    public static void delsortering_v2(int[] a) {
         int par = 0;
         for (int i = 0; i < a.length; i++) {
             if (a[i] % 2 != 0) {
@@ -155,6 +104,7 @@ public class Oblig1 {
         Arrays.sort(a, par, a.length);
     }
 
+    //Oppgave 5
     public static void rotasjon(char[] a) {
         if (a.length > 1) {
             char temp = a[a.length - 1];
@@ -163,6 +113,7 @@ public class Oblig1 {
         }
     }
 
+    //Oppgave 6
     public static void rotasjon(char[] a, int k) {
         if (a.length > 1) {
             k = ((k % a.length) + a.length) % a.length;
@@ -172,6 +123,7 @@ public class Oblig1 {
         }
     }
 
+    //Oppgave 7a
     public static String flett(String s, String t) {
         StringBuilder sb = new StringBuilder();
 
@@ -190,6 +142,7 @@ public class Oblig1 {
         return sb.toString();
     }
 
+    //Oppgave 7b
     public static String flett(String... s) {
         StringBuilder sb = new StringBuilder();
 
@@ -212,6 +165,7 @@ public class Oblig1 {
         return sb.toString();
     }
 
+    //Oppgave 8
     public static int[] indekssortering(int[] a) {
         int[] b = Arrays.copyOf(a, a.length);
         int[] index = new int[a.length];
@@ -225,76 +179,57 @@ public class Oblig1 {
         return index;
     }
 
-    public static int min(int[] a, int fra, int til) {
-        if (fra < 0 || til > a.length || fra >= til)
-            throw new IllegalArgumentException("Illegalt intervall!");
-
-        int m = fra;             // indeks til minste verdi i a[fra:til>
-        int minverdi = a[fra];   // minste verdi i a[fra:til>
-
-        for (int i = fra + 1; i < til; i++)
-            if (a[i] < minverdi) {
-                m = i;               // indeks til minste verdi oppdateres
-                minverdi = a[m];     // minste verdi oppdateres
-            }
-
-        return m;  // posisjonen til minste verdi i a[fra:til>
-    }
-
-    public static int min(int[] a)  // bruker hele tabellen
+    //Oppgave 9
+    public static int[] tredjeMin(int[] a)
     {
-        return min(a, 0, a.length);     // kaller metoden over
-    }
+        if(a.length < 3)
+        {
+            throw new NoSuchElementException("Tabellen er for kort");
+        }
+        int[] b = indekssortering(Arrays.copyOfRange(a,0,3));
 
-    public static int[] tredjeMinJuks(int[] a) {
-        if (a.length < 3) throw new NoSuchElementException("Error");
+        int indexMinst = b[0];
+        int indexNestMinst = b[1];
+        int indexTredjeMinst = b[2];
 
-        int[] b = Arrays.copyOfRange(indekssortering(a), 0, 3);
-
-        return b;
-    }
-
-    public static int[] tredjeMin(int[] a) {
-        if (a.length < 3) throw new NoSuchElementException("Error");
-
-        int[] temp = indekssortering(Arrays.copyOfRange(a, 0, 3));
-
-        int minPos = temp[0];
-        int medPos = temp[1];
-        int maxPos = temp[2];
-        int minVal = a[minPos];
-        int medVal = a[medPos];
-        int maxVal = a[maxPos];
+        int minstVerdi = a[indexMinst];
+        int nestMinstVerdi = a[indexNestMinst];
+        int tredjeMinstVerdi = a[indexTredjeMinst];
 
         for (int i = 3; i < a.length; i++) {
-            if (i != minPos && i != medPos && i != maxPos) {
-                int curVal = a[i];
-                if (curVal < maxVal) {
-                    if (curVal < medVal) {
-                        if (curVal < minVal) {
-                            maxVal = medVal;
-                            maxPos = medPos;
-                            medVal = minVal;
-                            medPos = minPos;
-                            minVal = curVal;
-                            minPos = i;
-                        } else {
-                            maxVal = medVal;
-                            maxPos = medPos;
-                            medVal = curVal;
-                            medPos = i;
-                        }
-                    } else {
-                        maxVal = curVal;
-                        maxPos = i;
+            if(a[i]<tredjeMinstVerdi)
+            {
+                if(a[i]<nestMinstVerdi)
+                {
+                    if(a[i]<minstVerdi)
+                    {
+                        tredjeMinstVerdi = nestMinstVerdi;
+                        nestMinstVerdi = minstVerdi;
+                        minstVerdi = a[i];
+                        b[2] = b[1];
+                        b[1] = b[0];
+                        b[0] = i;
                     }
+                    else
+                    {
+                        tredjeMinstVerdi = nestMinstVerdi;
+                        nestMinstVerdi = a[i];
+                        b[2] = b[1];
+                        b[1] = i;
+                    }
+                }
+                else
+                {
+                    tredjeMinstVerdi = a[i];
+                    b[2] = i;
                 }
             }
         }
 
-        return new int[]{minPos, medPos, maxPos};
+        return b;
     }
 
+    //Oppgave 10
     public static boolean inneholdt(String a, String b) {
         int[][] c = new int[29][2];
         int charInt;
@@ -341,5 +276,33 @@ public class Oblig1 {
         }
 
         return ok;
+    }
+
+    //Hjelpemetoder
+    public static void bytt(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
+    public static int min(int[] a, int fra, int til) {
+        if (fra < 0 || til > a.length || fra >= til)
+            throw new IllegalArgumentException("Illegalt intervall!");
+
+        int m = fra;
+        int minverdi = a[fra];
+
+        for (int i = fra + 1; i < til; i++)
+            if (a[i] < minverdi) {
+                m = i;
+                minverdi = a[m];
+            }
+
+        return m;
+    }
+
+    public static int min(int[] a)
+    {
+        return min(a, 0, a.length);
     }
 }

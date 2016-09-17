@@ -358,4 +358,25 @@ public class Table {
 
         System.out.println(Arrays.toString(a));
     }
+
+    public static int binarySearch(int[] a, int value, int fromIndex, int toIndex) {
+        int middle = (fromIndex + toIndex) / 2;
+
+        int nextMiddle;
+        while (true) {
+            if (a[middle] > value) {
+                toIndex = middle;
+                nextMiddle = (fromIndex + middle) / 2;
+            } else {
+                fromIndex = middle;
+                nextMiddle = (middle + toIndex) / 2;
+            }
+
+            if ((middle + 1 == nextMiddle) || (middle - 1 == nextMiddle) || middle == nextMiddle) {
+                return nextMiddle;
+            } else {
+                middle = nextMiddle;
+            }
+        }
+    }
 }

@@ -1,3 +1,4 @@
+/*
 package programs;
 
 import static obligs.Oblig1.*;
@@ -6,9 +7,11 @@ import modules.Table;
 
 import java.util.Arrays;
 
+*/
 /**
  * Created by Consilium on 29.08.2016.
- */
+ *//*
+
 public class Oblig1Main {
     public static void main(String[] args) {
         String str = "str";
@@ -99,3 +102,4 @@ public class Oblig1Main {
         System.out.println(Arrays.toString(tredjeMin(b)));
     }
 }
+*/

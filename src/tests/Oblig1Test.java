@@ -12,9 +12,7 @@ Oblig 1 sendes inn!
 */
 
 ///// Oppdatert 9. september 2016 ///////////////
-
 package obligs;
-
 import java.util.*;
 
 public class Oblig1Test
@@ -34,13 +32,6 @@ public class Oblig1Test
         antallFeil += oppgave9();
         antallFeil += oppgave10();
 
-        long tid;
-        int repeats = 0;
-        for (int i = 0; i < repeats; i++) {
-            tid = System.currentTimeMillis();
-            antallFeil += oppgave8();
-            System.out.println(System.currentTimeMillis() - tid);
-        }
         if (antallFeil == 0)
         {
             System.out.println("Gratulerer!! Du passerte testen!");

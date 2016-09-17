@@ -18,6 +18,39 @@ public class Main {
         System.out.println(a+" "+b+" "+c);
     }
 
+    public static void test_methods() {
+        /*
+        long tid;
+        int sumTid;
+        int repeats = 50;
+
+        for (int i = 1; i <= 10; i++) {
+            sumTid = 0;
+            for (int j = 0; j < repeats; j++) {
+                tid = System.currentTimeMillis();
+                try {
+                    Method m = klass.getClass().getMethod("oppgave" + i, null);
+                    m.invoke(null, args);
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (SecurityException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                }
+                tid = System.currentTimeMillis()-tid;
+                sumTid += tid;
+            }
+
+            System.out.println("Oppgave " + i+ " tok "+(sumTid / 50.0)+"ms");
+        }
+        */
+    }
+
     public static void task_1235() {
         int[] a = {1, 2, 3, 4, 5};
         snu(a, 0, 3);
