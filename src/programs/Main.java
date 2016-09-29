@@ -4,18 +4,13 @@ import modules.Table;
 import static modules.Tabell.*;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("... Initiating AlgDat ...\n");
 
-        System.out.println(Math.floorMod(-499, 50));
-
-        //System.out.println(((-499 % 50) + 50) % 50);
-        int a = 'Æ';
-        int b = 'Ø';
-        int c = 'Å';
-        System.out.println(a+" "+b+" "+c);
+        
     }
 
     public static void test_methods() {
