@@ -5,12 +5,12 @@ import static modules.Tabell.*;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("... Initiating AlgDat ...\n");
 
-        
     }
 
     public static void test_methods() {

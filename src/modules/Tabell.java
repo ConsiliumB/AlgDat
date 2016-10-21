@@ -26,7 +26,8 @@ public class Tabell {
         return a;
     }
 
-    public static void randPerm(int[] a)
+    public static
+    void randPerm(int[] a)
     {
         Random r = new Random();
 

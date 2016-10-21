@@ -11,11 +11,12 @@ kommentartegnet foran metodekallet tas vekk. Testprogrammet må gi 0 feil før
 Oblig 2 sendes inn!
 */
 
-///// Oppdatert 25. september 2016 ///////////////
+///// Oppdatert 06. oktober 2016 ///////////////
 
-import java.util.*;
 import modules.DobbeltLenketListe;
 import modules.Liste;
+
+import java.util.*;
 
 public class Oblig2Test
 {
@@ -175,24 +176,25 @@ public class Oblig2Test
             System.out.println("Oppgave 1p: Feil i konstruktøren!");
         }
 
-        class Test extends DobbeltLenketListe<Integer>
+        class Test<T> extends DobbeltLenketListe<T>
         {
-            public boolean leggInn(Integer verdi)
+            public boolean leggInn(T verdi)
             {
-                super.leggInn(0);
+                super.leggInn(verdi);
+                super.leggInn(verdi);
                 return true;
             }
 
-            public Test(Integer[] a)
+            public Test(T[] a)
             {
                 super(a);
             }
         }
 
         Integer[] tall = {1,2,3,4,5};
-        Test testliste = new Test(tall);
+        Test<Integer> testliste = new Test(tall);
 
-        if (testliste.toString().compareTo(Arrays.toString(tall)) != 0)
+        if (testliste.antall() > 5)
         {
             antallFeil++;
             System.out.println("Oppgave 1q: leggInn-metoden brukes i konstruktøren!");
@@ -811,7 +813,6 @@ public class Oblig2Test
         if (!liste.omvendtString().equals("[7, 6, 5, 4, 3, 2, 1]"))
         {
             antallFeil++;
-            System.out.println("[7, 6, 5, 4, 3, 2, 1] expected, got: "+liste.omvendtString());
             System.out.println("Oppgave 5j: Feil i metoden leggInn()!");
         }
 
@@ -1138,12 +1139,10 @@ public class Oblig2Test
         long maks = Math.max(tid1,tid2);
         long min =  Math.min(tid1,tid2);
 
-        if (maks > 1.3*min)
+        if (maks > 1.5*min)
         {
             System.out.println ("Oppgave 6zg: Ineffektiv kode! Har du kodet den ene fjern-metoden");
-            System.out.println ("             ved hjelp av den andre? Det betyr at du går gjennom");
-            System.out.println ("             listen minst to ganger i den metoden. Omkod slik at");
-            System.out.println ("             det letes etter verdien kun en gang!");
+            System.out.println ("ved hjelp av den andre? Eller så er en av fjern-metodene dine litt treg.");
             antallFeil++;
         }
         return antallFeil;

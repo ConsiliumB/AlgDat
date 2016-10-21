@@ -2,17 +2,17 @@ package programs;
 
 import modules.DobbeltLenketListe;
 import modules.Liste;
+import modules.Tabell;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by Consilium on 27.09.2016.
  */
 public class Oblig2Main {
     public static void main(String[] args) {
-        oppgave10();
+        oppgave10_2();
+        oppgave10_2();
     }
 
     public static void oppgave1() {
@@ -92,7 +92,7 @@ public class Oblig2Main {
         System.out.println("Ver. 1 brukte: "+tid+"ms");
         for (int i = 0; i < 2000000; i++) liste.leggInn(i);
         tid = System.currentTimeMillis();
-        liste.nullstill_slow();
+        //liste.nullstill_slow(); IS ON GIT
         tid = System.currentTimeMillis()-tid;
         System.out.println("Tom? "+liste.toString());
         System.out.println("Ver. 2 brukte: "+tid+"ms");
@@ -125,24 +125,57 @@ public class Oblig2Main {
 
     public static void oppgave10() {
 //        String[] navn = {"Lars","Anders","Bodil","Kari","Per","Berit"};
-        Integer[] a = new Integer[500];
-        Arrays.setAll(a,x->500-x);
+        Integer[] a = new Integer[2000];
+        Random rand = new Random();
+        Arrays.setAll(a,x->rand.nextInt());
         Liste<Integer> liste = new DobbeltLenketListe<>(a);
         long tid = System.currentTimeMillis();
         DobbeltLenketListe.sorter(liste, Comparator.naturalOrder());
         tid = System.currentTimeMillis() - tid;
-        System.out.println("Tok "+tid+"ms");
+        System.out.println("V1: Tok "+tid+"ms");
         System.out.println(liste);
 
         liste = new DobbeltLenketListe<>(a);
         tid = System.currentTimeMillis();
-        DobbeltLenketListe.sorter2(liste, Comparator.naturalOrder());
+        DobbeltLenketListe.sorter(liste, Comparator.naturalOrder());
         tid = System.currentTimeMillis() - tid;
-        System.out.println("Tok "+tid+"ms");
+        System.out.println("V2: Tok "+tid+"ms");
         System.out.println(liste);
 
         // Utskrift:
         // [Lars, Anders, Bodil, Kari, Per, Berit]
         // [Anders, Berit, Bodil, Kari, Lars, Per]
+    }
+
+    public static void oppgave10_2() {
+        Integer[] a = Tabell.randPermInteger(20);
+        Liste<Integer> liste = new DobbeltLenketListe<>(a);
+        System.out.println(liste.toString());
+        DobbeltLenketListe.sorter(liste, Comparator.reverseOrder());
+        System.out.println(liste.toString());
+    }
+
+    public static <T> void sorter(Liste<T> liste, Comparator<? super T> c)
+    {
+
+        if (liste.antall() > 0) {
+            T min = liste.hent(0);
+            T current = min;
+            int i = 0;
+            for (int j = 1; j < liste.antall(); j++) {
+                Iterator<T> it = liste.iterator();
+                while (it.hasNext() && i < liste.antall() - j + 1) {
+                    i++;
+                    current = it.next();
+                    min = c.compare(current, min) == -1 ? current : min;
+                    System.out.println(min+"  "+i+" "+min);
+                }
+                liste.fjern(min);
+                liste.leggInn(min);
+                min = liste.hent(0);
+                i = 0;
+            }
+        }
+
     }
 }
