@@ -1,5 +1,6 @@
 package programs;
 
+import modules.Person;
 import modules.Table;
 import static modules.Tabell.*;
 
@@ -9,8 +10,7 @@ import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("... Initiating AlgDat ...\n");
-
+        
     }
 
     public static void test_methods() {
